@@ -35,6 +35,11 @@ exports.postMessage = async (req, res) => {
   if (utils.isUser(user)) {
     const timestamp = Date.now();
     const newMessage = { message, author, timestamp };
+
+    if (user.conversation.length === 50) {
+      await User.updateOne({ id: id }, { $pop: { conversation: -1 } });
+    }
+
     User.updateOne({ id: id }, { $push: { conversation: newMessage } })
       .then(() => {
         res.status(201).json(newMessage);

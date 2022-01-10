@@ -31,3 +31,7 @@ exports.generateNewMessage = (splitedMessage, newOrder) => {
 exports.isUser = (user) => {
   return user.id && user.pseudo && user.conversation ? true : false;
 };
+
+exports.getLastMessage = (user) => {
+  return user.conversation[user.conversation.length - 1];
+};
