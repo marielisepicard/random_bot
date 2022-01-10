@@ -1,9 +1,6 @@
-.App {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.app {
+  height: 100vh;
+  display: flex;
   background: linear-gradient(
     105.37deg,
     #273895 3.98%,
@@ -13,90 +10,134 @@
   );
 }
 
-.chatbox {
-  /* background-color: white; */
-  height: 550px;
-  width: 300px;
-  margin: auto;
-  max-height: 80%;
+.instructions {
+  flex: 3.5;
+}
 
-  max-width: 80%;
-  margin-top: 100px;
+.chatbox {
+  flex: 3.5;
+  margin: 50px 0;
   filter: drop-shadow(1px 4px 120px #ffffff);
+  border: 0.2px solid rgba(204, 204, 204, 0.247);
   border-radius: 20px;
+}
+
+.params {
+  flex: 3.5;
+}
+
+.chatbox-wrapper {
+  background-color: #ffffff52;
   display: flex;
   flex-direction: column;
-  /* align-content: stretch; */
-  gap: 0px;
-  row-gap: 0px;
-  flex-grow: 1;
-  border: 0.2px solid rgba(204, 204, 204, 0.247);
+  border-radius: 20px;
+  height: 100%;
+  justify-content: space-evenly;
 }
 
-.top {
-  background-color: white;
-  flex-grow: 1;
-  height: 10%;
-  opacity: 60%;
-  border-radius: 20px 20px 0 0;
+/* ------- messages */
+
+.chatbox-top {
+  height: 70px;
 }
 
-.messages {
-  flex-grow: 1;
-
-  top: 40px;
-  left: 0px;
-  height: 80%;
-  background-color: white;
-  opacity: 80%;
+.chatbox-middle {
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 10px;
+  padding-left: 5px;
+  background-color: rgba(255, 255, 255, 0.575);
 }
 
-.bottom {
-  flex-grow: 1;
-  background-color: white;
-  opacity: 60%;
-  border-radius: 0 0 20px 20px;
+.chatbox-bottom {
+  padding: 10px;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
+
+.chatbox-middle {
+  height: 500px;
+}
+
+.message-wrapper {
+  display: flex;
+}
+
+.message-wrapper.own {
+  justify-content: end;
+  padding: 0 10px;
+}
+.message {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #5eadb8;
+
+  max-width: 70%;
+}
+
+.message.own {
+  background-color: #6a99bb;
+}
+
+/* ------- submit messages */
 
 textarea {
-  width: 200px;
-  margin: 8px auto 8px 20px;
-  height: 30px;
-  border-radius: 20px;
-  background: white;
-  opacity: 80%;
+  width: 80%;
+  height: 50px;
+  padding: 10px;
   resize: none;
   border: none;
-  padding-left: 10px;
+  border-radius: 10px;
+}
+
+.chat-submit-message {
+  width: 70px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
 }
 
 textarea:focus,
-button:focus {
+.chat-submit-message.focus {
   outline: none;
 }
 
-.message-btn {
-  width: 20px;
-  margin: 8px 20px auto auto;
-  background: white;
-  opacity: 80%;
+.delete-conversation-button {
+  background-color: white;
+  opacity: 50%;
   border: none;
+  color: black;
+  height: 60px;
+  width: 300px;
+  border-radius: 10px;
+  margin: 10px 0px;
 }
 
-/* ---  */
+/* ------- params */
 
-.modal-open {
-  position: fixed;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: #3d348b57;
+.params-wrapper {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.modal-inside {
+/* ------- presentation */
+
+.presentation-text {
+  background-color: white;
+  opacity: 50%;
+  border-radius: 10px;
+  margin: 10px 0px;
+
+  width: 300px;
+  margin: 50px auto auto auto;
+  padding: 10px;
+}
+
+.presentation-paragraph {
   text-align: center;
-  margin-left: 500px;
+  vertical-align: middle;
 }

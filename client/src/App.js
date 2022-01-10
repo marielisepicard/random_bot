@@ -5,6 +5,9 @@ import Modal from "./Modal";
 import { io } from "socket.io-client";
 
 import "./App.css";
+import Presentation from "./Components/Presentation";
+import Parameters from "./Components/Parameters";
+import Chatbox from "./Components/Chatbox";
 
 // useRef pour io ?
 function App() {
@@ -53,7 +56,7 @@ function App() {
       url: `http://localhost:3001/messages/`,
       data: { message: message, author: author, id: id },
     })
-      .then((res) => refreshUser())
+      .then(() => refreshUser())
       .catch((err) => console.log("il y a une erreur pour envoyer un message"));
   };
 
@@ -78,38 +81,21 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {user && user.conversation ? (
-          <div className="chatbox">
-            <div className="top"></div>
-            <div className="messages">
-              <button onClick={deleteConversation}>
-                Supprimer l'historique de la conversation
-              </button>
-              {user.conversation.map((message) => {
-                return (
-                  <p key={message.timestamp}>
-                    {message.author} {message.message}
-                  </p>
-                );
-              })}
-            </div>
-            <form className="bottom" onSubmit={sendMessage}>
-              <textarea
-                placeholder="type something..."
-                value={newMessage}
-                onChange={updateNewMessage}
-              />
-              <button className="message-btn">{">"}</button>
-            </form>
-          </div>
-        ) : (
-          <h1>Loading</h1>
-        )}
-      </header>
+    <>
+      {user && user.conversation && (
+        <div className="app">
+          <Presentation />
+          <Chatbox
+            user={user}
+            sendMessage={sendMessage}
+            updateNewMessage={updateNewMessage}
+            newMessage={newMessage}
+          />
+          <Parameters className="params" handleClick={deleteConversation} />
+        </div>
+      )}
       <Modal ref={modal} />
-    </div>
+    </>
   );
 }
 
