@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+
 .app {
   height: 100vh;
   display: flex;
@@ -8,6 +10,7 @@
     #0d9b9a 74.12%,
     #00cf9d 95.47%
   );
+  font-family: "Lora", serif;
 }
 
 .instructions {
@@ -38,7 +41,7 @@
 /* ------- messages */
 
 .chatbox-top {
-  height: 70px;
+  height: 20px;
 }
 
 .chatbox-middle {
@@ -72,13 +75,17 @@
 .message {
   padding: 10px;
   border-radius: 20px;
-  background-color: #5eadb8;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #234d96;
 
   max-width: 70%;
+  font-weight: 400;
 }
 
 .message.own {
-  background-color: #6a99bb;
+  background-color: #234d96;
+  color: white;
+  font-weight: 400;
 }
 
 /* ------- submit messages */
@@ -90,13 +97,32 @@ textarea {
   resize: none;
   border: none;
   border-radius: 10px;
+  font-family: "Lora", serif;
+  font-weight: 400;
+  color: #234d96;
+}
+
+textarea::placeholder {
+  color: #234d9688;
 }
 
 .chat-submit-message {
-  width: 70px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border: none;
   border-radius: 5px;
+  font-family: "Lora", serif;
+  font-weight: 400;
+  border-radius: 50%;
+  padding: 3px;
+}
+
+.send-icon {
+  height: 26px;
+  width: 26px;
+  position: relative;
+  top: 4px;
+  left: -2px;
 }
 
 textarea:focus,
@@ -105,17 +131,38 @@ textarea:focus,
 }
 
 .delete-conversation-button {
-  background-color: white;
-  opacity: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+
   border: none;
   color: black;
   height: 60px;
   width: 300px;
   border-radius: 10px;
   margin: 10px 0px;
+  font-family: "Lora", serif;
+  font-weight: 400;
 }
 
-/* ------- params */
+.delete-conversation-button:hover,
+.chat-submit-message:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+.delete-conversation-button:active,
+.chat-submit-message:active {
+  background-color: white;
+  transform: scale(1.35);
+  transition: 1000ms;
+}
+
+/* ------- top chatbox */
+/* 
+.bot-icon {
+  width: 70px;
+  height: 70px;
+  margin-left: 40px;
+} */
 
 .params-wrapper {
   padding: 50px;
@@ -127,17 +174,98 @@ textarea:focus,
 /* ------- presentation */
 
 .presentation-text {
-  background-color: white;
-  opacity: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   margin: 10px 0px;
-
   width: 300px;
   margin: 50px auto auto auto;
   padding: 10px;
+  animation: instructions-load 1000ms ease-out;
+  filter: drop-shadow(1px 4px 120px #ffffff);
+  border: 0.2px solid rgba(204, 204, 204, 0.247);
+  font-family: "Lora", serif;
+}
+
+.presentation-text:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.15);
+  transition: 1000ms;
 }
 
 .presentation-paragraph {
   text-align: center;
   vertical-align: middle;
+  font-family: "Lora", serif;
+  font-weight: 400;
+}
+
+/* ------- animations */
+
+@keyframes instructions-load {
+  0% {
+    transform: translateY(-200%) rotate(180deg);
+  }
+  90% {
+    transform: translateY(2%);
+  }
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+}
+
+/* ------- modal */
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(
+    105.37deg,
+    #273895 3.98%,
+    #1c6397 34.14%,
+    #0d9b9a 74.12%,
+    #00cf9d 95.47%
+  );
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Lora", serif;
+}
+
+.modal-open {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  width: 300px;
+  background-color: rgba(255, 255, 255, 0.432);
+  padding: 15px;
+  /* padding: 50px; */
+}
+
+.modal-div {
+  color: #234d96;
+  font-weight: 500;
+}
+
+input {
+  font-family: "Lora", serif;
+  border: none;
+  padding-left: 10px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.modal-btn {
+  width: 50px;
+  height: 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #234d96;
+  color: white;
 }

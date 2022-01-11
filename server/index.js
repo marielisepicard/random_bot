@@ -6,7 +6,6 @@ const utils = require("./utils/utils");
 
 const userRoutes = require("./routes/user");
 const messagesRoutes = require("./routes/messages");
-// const errorRoutes = require("./routes/errors");
 
 const app = express();
 const server = http.createServer(app);
@@ -27,7 +26,6 @@ app.use((req, res, next) => {
 
 app.use("/user", userRoutes);
 app.use("/messages", messagesRoutes);
-// app.use("*", errorRoutes);
 
 // --- socket
 const { Server } = require("socket.io");
@@ -47,4 +45,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(process.env.port || 3001);
+server.listen(process.env.PORT || 3001);

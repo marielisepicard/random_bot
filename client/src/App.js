@@ -1,83 +1,47 @@
-import { useState, useRef, useEffect } from "react";
-
-import axios from "axios";
-import Modal from "./Modal";
+import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 
-import "./App.css";
 import Presentation from "./Components/Presentation";
 import Parameters from "./Components/Parameters";
 import Chatbox from "./Components/Chatbox";
+import Modal from "./Components/Modal";
 
-// useRef pour io ?
+import { getUser, postMessage } from "./utils/utils";
+
+import "./App.css";
+
 function App() {
-  const modal = useRef(null);
   const [user, setUser] = useState({});
-  const [newMessage, setNewMessage] = useState("");
-  const [id, setId] = useState("");
   const [socket, setSocket] = useState(null);
+  const [modal, setModal] = useState(false);
+  const [newMessage, setNewMessage] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("id", "12b238493eb5832a9939f0f74d2082a4");
     const id = localStorage.getItem("id");
-    setId(id);
     if (id) {
       setSocket(io("ws://localhost:3001"));
-      const getUser = async () => {
-        axios({
-          method: "get",
-          url: `http://localhost:3001/user/${id}`,
-        })
-          .then((res) => setUser(res.data))
-          .catch((err) => console.log(err));
-      };
-      getUser();
-    } else modal.current.open();
+      getUser(id, setUser, setError);
+    } else setModal(true);
   }, []);
 
-  useEffect(() => {
-    socket?.on("Bot", (message) => {
-      postMessage(message, "Bot");
-    });
-  }, [socket]);
+  useEffect(
+    () =>
+      socket?.on("Bot", (message) =>
+        postMessage(message, "Bot", user, setUser, setError)
+      ),
+    [socket]
+  );
 
-  const refreshUser = () => {
-    axios({
-      method: "get",
-      url: `http://localhost:3001/user/${id}`,
-    })
-      .then((res) => setUser(res.data))
-      .catch((err) => console.log(err));
-  };
-
-  const postMessage = (message, author) => {
-    axios({
-      method: "post",
-      url: `http://localhost:3001/messages/`,
-      data: { message: message, author: author, id: id },
-    })
-      .then(() => refreshUser())
-      .catch((err) => console.log("il y a une erreur pour envoyer un message"));
-  };
+  const refreshUser = async () => getUser(user.id, setUser, setError);
 
   const sendMessage = async (e) => {
-    socket.emit("Message", newMessage);
     e.preventDefault();
-    postMessage(newMessage, user.pseudo);
-    setNewMessage("");
-  };
-
-  const updateNewMessage = (e) => {
-    setNewMessage(e.target.value);
-  };
-
-  const deleteConversation = async () => {
-    await axios({
-      method: "delete",
-      url: `http://localhost:3001/messages/${user.id}`,
-    })
-      .then(() => setUser({ ...user, conversation: [] }))
-      .catch((err) => console.log(err));
+    if (newMessage.length > 0) {
+      postMessage(newMessage, user.pseudo, user, setUser, setError);
+      socket.emit("Message", newMessage);
+      setNewMessage("");
+    }
   };
 
   return (
@@ -88,13 +52,26 @@ function App() {
           <Chatbox
             user={user}
             sendMessage={sendMessage}
-            updateNewMessage={updateNewMessage}
+            updateNewMessage={(e) => setNewMessage(e.target.value)}
             newMessage={newMessage}
           />
-          <Parameters className="params" handleClick={deleteConversation} />
+          <Parameters
+            className="params"
+            user={user}
+            setUser={setUser}
+            setError={setError}
+          />
         </div>
       )}
-      <Modal ref={modal} />
+      {modal && (
+        <Modal
+          setModal={setModal}
+          setUser={setUser}
+          refreshUser={refreshUser}
+          setSocket={setSocket}
+        />
+      )}
+      {error && <></>}
     </>
   );
 }

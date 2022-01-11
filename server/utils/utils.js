@@ -14,10 +14,8 @@ exports.shuffleUp = (array) => {
 //   return arr;
 // };
 
-exports.createArray = (length) => {
-  return [...Array(length).keys()];
-};
-// [1, 2, 3 , 4 ,5 ]
+// 10 -> [1, 2 ,3 ,4 ... 9]
+exports.createArray = (length) => [...Array(length).keys()];
 
 exports.generateNewMessage = (splitedMessage, newOrder) => {
   let newMessage = "";
@@ -28,10 +26,7 @@ exports.generateNewMessage = (splitedMessage, newOrder) => {
   return newMessage;
 };
 
-exports.isUser = (user) => {
-  return user.id && user.pseudo && user.conversation ? true : false;
-};
+exports.isUser = (user) => Boolean(user.id && user.pseudo && user.conversation);
 
-exports.getLastMessage = (user) => {
-  return user.conversation[user.conversation.length - 1];
-};
+exports.getLastMessage = (user) =>
+  user.conversation[user.conversation.length - 1];

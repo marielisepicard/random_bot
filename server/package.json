@@ -9,6 +9,7 @@
   "author": "Marie-Lise Picard",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.2",
     "md5": "^2.3.0",
     "mongoose": "^6.1.5",
