@@ -20,7 +20,9 @@ const Chatbox = ({ user, sendMessage, updateNewMessage, newMessage }) => {
   return (
     <div className="chatbox">
       <div className="chatbox-wrapper">
-        <div className="chatbox-top"></div>
+        <div className="chatbox-top">
+          Hi {user.pseudo}! I'm Bot. Let's have a talk
+        </div>
         <div className="chatbox-middle">
           {user.conversation.map((message) => (
             <div ref={scrollRef} key={message.timestamp}>
