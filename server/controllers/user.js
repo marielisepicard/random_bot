@@ -1,4 +1,5 @@
 const md5 = require("md5");
+require("dotenv").config();
 
 const utils = require("../utils/utils");
 const User = require("../models/User");
@@ -10,7 +11,7 @@ exports.createUser = (req, res) => {
     return res.status(400).json({ Error: "Pseudo is missing in the body" });
   }
 
-  const id = md5(pseudo),
+  const id = md5(pseudo + process.env.SECRET_STRING),
     user = new User({ pseudo, id, conversation: [] });
   user
     .save()
