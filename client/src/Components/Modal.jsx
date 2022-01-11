@@ -1,4 +1,5 @@
-import "../App.css";
+import "../style.css";
+
 import { useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
@@ -23,9 +24,8 @@ const Modal = ({ setModal, setUser, setSocket }) => {
       data: { pseudo },
     })
       .then((res) => {
-        const { data } = res,
-          { id } = data;
-        localStorage.setItem("id", id);
+        const { data } = res;
+        localStorage.setItem("id", data.id);
         setUser({
           id: data.id,
           pseudo: data.pseudo,
@@ -39,14 +39,14 @@ const Modal = ({ setModal, setUser, setSocket }) => {
 
   return (
     <div className="modal">
-      <div className="modal-open">
-        <div className="modal-div">Choose a pseudo:</div>
+      <div className="modalWrapper">
+        <div className="modalInstruction">Choose a pseudo:</div>
         <input
           placeholder="pseudo"
           onKeyDown={onKeyDown}
           onChange={updatePseudo}
         ></input>
-        <button className="modal-btn" onClick={createUser}>
+        <button className="modalBtn" onClick={createUser}>
           Go
         </button>
       </div>

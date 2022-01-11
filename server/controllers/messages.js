@@ -7,6 +7,7 @@ exports.getConversation = async (req, res) => {
     return res.status(400).json({ Error: "Pseudo parameter is missing" });
   }
   const user = await User.findOne({ id: id });
+  console.log(conversation);
   if (!user) {
     return res.status(404).json({ Error: "User with this id doesn't exist" });
   }
@@ -29,6 +30,7 @@ exports.postMessage = async (req, res) => {
 
   const user = await User.findOne({ id: id });
 
+  // const message2 = message.replace(/\\n/g, "\n");
   if (!user) {
     return res.status(404).json({ Error: "User with this id doesn't exist" });
   }
@@ -36,6 +38,7 @@ exports.postMessage = async (req, res) => {
     const timestamp = Date.now();
     const newMessage = { message, author, timestamp };
 
+    console.log(newMessage);
     if (user.conversation.length === 50) {
       await User.updateOne({ id: id }, { $pop: { conversation: -1 } });
     }
@@ -72,4 +75,8 @@ exports.wrongParameters = (req, res) => {
   res.status(404).json({
     Error: "Parameters are uncorrectly written or endpoint doesn't exist",
   });
+};
+
+exports.wrongRequest = (req, res) => {
+  return res.status(400).json({ Error: "Wrong request" });
 };

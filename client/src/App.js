@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
 
-import Presentation from "./Components/Presentation";
-import Parameters from "./Components/Parameters";
+import SideBar from "./Components/SideBar";
 import Chatbox from "./Components/Chatbox";
 import Modal from "./Components/Modal";
 
-import { getUser, postMessage } from "./utils/utils";
+import { getUser, postMessage } from "./utils/api";
 
-import "./App.css";
+import "./style.css";
 
 function App() {
   const [user, setUser] = useState({});
@@ -18,6 +17,7 @@ function App() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
+    //  localStorage.removeItem("id");
     const id = localStorage.getItem("id");
     if (id) {
       setSocket(io("ws://localhost:3001"));
@@ -48,18 +48,12 @@ function App() {
     <>
       {user && user.conversation && (
         <div className="app">
-          <Presentation />
+          <SideBar user={user} setUser={setUser} setError={setError} />
           <Chatbox
             user={user}
             sendMessage={sendMessage}
             updateNewMessage={(e) => setNewMessage(e.target.value)}
             newMessage={newMessage}
-          />
-          <Parameters
-            className="params"
-            user={user}
-            setUser={setUser}
-            setError={setError}
           />
         </div>
       )}
@@ -71,7 +65,6 @@ function App() {
           setSocket={setSocket}
         />
       )}
-      {error && <></>}
     </>
   );
 }

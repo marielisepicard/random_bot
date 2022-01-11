@@ -1,4 +1,4 @@
-import "../App.css";
+import "../style.css";
 import Message from "./Message";
 import { useRef, useEffect } from "react";
 
@@ -8,6 +8,7 @@ const Chatbox = ({ user, sendMessage, updateNewMessage, newMessage }) => {
   const scrollRef = useRef();
 
   useEffect(() => {
+    console.log(user.conversation);
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [user]);
 
@@ -18,34 +19,41 @@ const Chatbox = ({ user, sendMessage, updateNewMessage, newMessage }) => {
   };
 
   return (
-    <div className="chatbox">
-      <div className="chatbox-wrapper">
-        <div className="chatbox-top">
-          Hi {user.pseudo}! I'm Bot. Let's have a talk
-        </div>
-        <div className="chatbox-middle">
-          {user.conversation.map((message) => (
-            <div ref={scrollRef} key={message.timestamp}>
-              <Message
-                key={message.timestamp}
-                message={message.message}
-                own={message.author === user.pseudo ? true : false}
-              />
-            </div>
-          ))}
-        </div>
-        <form className="chatbox-bottom" onSubmit={sendMessage}>
-          <textarea
-            placeholder="Write something..."
-            value={newMessage}
-            onChange={updateNewMessage}
-            onKeyDown={onKeyDown}
-          />
-          <button className="chat-submit-message">
-            <img className="send-icon" src={Send} />
-          </button>
-        </form>
+    <div className="chatBox">
+      <div className="chatBoxTitle">
+        Hello {user.pseudo}, I’m Bot. Let’s have a talk...!
       </div>
+      <div className="chatBoxMessage">
+        {user.conversation.map((message) => (
+          <div
+            ref={scrollRef}
+            key={message.timestamp}
+            className={
+              message.author === user.pseudo
+                ? "messageWrapper own"
+                : "messageWrapper"
+            }
+          >
+            <Message
+              message={message}
+              own={message.author === user.pseudo ? true : false}
+              key={message.timestamp}
+            />
+          </div>
+        ))}
+      </div>
+      <form className="chatBoxSending" onSubmit={sendMessage}>
+        <textarea
+          className="writeMessage"
+          placeholder="Write something..."
+          value={newMessage}
+          onChange={updateNewMessage}
+          onKeyDown={onKeyDown}
+        />
+        <button className="sendMessage">
+          <img className="send-icon" src={Send} />
+        </button>
+      </form>
     </div>
   );
 };

@@ -43,3 +43,7 @@ exports.wrongParameters = async (req, res) => {
     Error: "Parameters are uncorrectly written or endpoint doesn't exist",
   });
 };
+
+exports.wrongRequest = (req, res) => {
+  return res.status(400).json({ Error: "Wrong request" });
+};

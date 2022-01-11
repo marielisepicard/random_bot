@@ -1,25 +1,11 @@
-import axios from "axios";
+export const convertTimestamp = (timestamp) => {
+  const fixLength = (i) => (i.length === 1 ? "0" + i : i),
+    date = new Date(parseInt(timestamp));
 
-export function getUser(id, setUser, setError) {
-  axios({
-    method: "get",
-    url: `http://localhost:3001/user/${id}`,
-  })
-    .then((res) => setUser(res.data))
-    .catch((err) => setError(true));
-}
+  let h = fixLength(date.getHours().toString()),
+    m = fixLength(date.getMinutes().toString()),
+    s = fixLength(date.getSeconds().toString()),
+    ms = fixLength(date.getMilliseconds().toString());
 
-export function postMessage(message, author, user, setUser, setError) {
-  const id = user && user.id ? user.id : localStorage.getItem("id");
-  axios({
-    method: "post",
-    url: `http://localhost:3001/messages/`,
-    data: {
-      message: message,
-      author: author,
-      id: id,
-    },
-  })
-    .then(() => getUser(id, setUser))
-    .catch((err) => setError(true));
-}
+  return h + ":" + m + ":" + s + "." + ms;
+};
