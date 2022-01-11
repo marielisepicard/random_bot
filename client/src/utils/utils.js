@@ -9,3 +9,6 @@ export const convertTimestamp = (timestamp) => {
 
   return h + ":" + m + ":" + s + "." + ms;
 };
+
+export const errorMessage = () =>
+  "Oops. Something weng wrong... You should come back later.";

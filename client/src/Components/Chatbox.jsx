@@ -35,7 +35,6 @@ const Chatbox = ({
           You should come back later.
         </p>
       )}
-
       <div className="chatBoxMessage">
         {user.conversation.map((message) => (
           <div
@@ -70,12 +69,5 @@ const Chatbox = ({
     </div>
   );
 };
-
-// Chatbox.propTypes = {
-//   user: PropTypes.string,
-//   updateNewMessage: PropTypes.string.isRequired,
-//   newMessage: PropTypes.string
-//   error:
-// }
 
 export default Chatbox;

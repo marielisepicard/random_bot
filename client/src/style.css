@@ -4,10 +4,13 @@
 // General
 // ---------------------------------------------------------------------------- */
 
+* {
+  font-family: "Inter", sans-serif;
+  color: #ffffff;
+}
+
 .app,
 .modal {
-  height: 100vh;
-  display: flex;
   background: linear-gradient(
     105.37deg,
     #273895 3.98%,
@@ -15,22 +18,25 @@
     #0d9b9a 74.12%,
     #00cf9d 95.47%
   );
+  display: flex;
+  height: 100vh;
+  justify-content: space-evenly;
 }
 
 .sideBar {
-  width: 33%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
   font-family: "Inter", sans-serif;
+  width: 33%;
+  padding: 20px;
 }
 
 .chatBox {
-  width: 77%;
   display: flex;
   flex-direction: column;
+  max-width: 800px;
   padding: 20px;
-  font-family: "Inter", sans-serif;
+  width: 77%;
 }
 
 /* 
@@ -38,29 +44,22 @@
 // ---------------------------------------------------------------------------- */
 
 .title {
+  align-items: center;
+  border-bottom: 5px solid #ffffff;
+  display: flex;
+  filter: drop-shadow(1px 4px 120px #ffffff);
   height: 32%;
+  font-size: 5em;
   font-style: normal;
   font-weight: 900;
-  font-size: 5em;
-  line-height: 1.1em;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.03em;
-  color: #ffffff;
   padding-left: 10px;
-  border-bottom: 5px solid #ffffff;
-  filter: drop-shadow(1px 4px 120px #ffffff);
-  /* font-weight: 600; */
 }
 
 .instructions {
   font-style: normal;
   font-weight: normal;
   font-size: 1.2em;
-  line-height: 1.1em;
-  letter-spacing: 0.03em;
   padding: 20px 20px 40px 20px;
-  color: #ffffff;
   align-items: center;
   justify-content: center;
   border-bottom: 2px solid #ffffff;
@@ -69,19 +68,19 @@
 .parameters {
   height: 44%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .sidebarBtn,
 .sidebarDiv {
   background: none;
   outline: none;
-  color: white;
   padding: 10px;
   font-style: normal;
   font-weight: 800;
-  font-size: 20px;
-  line-height: 24px;
-  letter-spacing: 0.03em;
+  font-size: 1em;
   margin: 10px 0;
 }
 
@@ -108,8 +107,6 @@
   font-size: 1.8em;
   display: flex;
   align-items: center;
-  letter-spacing: 0.03em;
-  color: #ffffff;
   margin: auto;
   margin-bottom: 10px;
   padding: 10px 20px 20px 20px;
@@ -167,7 +164,6 @@
   margin: 5px 0;
   font-size: 0.8em;
   font-weight: 700;
-  color: white;
   padding: 0 5px;
 }
 
@@ -305,10 +301,143 @@ input:focus {
   font-size: 12px;
 }
 
-/* 
-// Responsive
+/*
+// Responsive width < 1050px
 // ---------------------------------------------------------------------------- */
 
-/* 
-// Animations
+@media (max-width: 1050px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sideBar {
+    width: 100%;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .title {
+    height: auto;
+    font-size: 1.5em;
+    padding: 10px;
+    border-bottom: none;
+  }
+
+  .instructions {
+    font-size: 0.9em;
+    padding: 5px 5px 10px 5px;
+    max-width: 300px;
+    border-bottom: 2px solid #ffffff;
+  }
+
+  .parameters {
+    height: auto;
+  }
+
+  .sidebarBtn,
+  .sidebarDiv {
+    font-size: 0.9em;
+    line-height: 1em;
+    margin: 10px 0;
+    width: 200px;
+  }
+
+  .sidebarBtn {
+    margin-top: 20px;
+    cursor: pointer;
+    border: white solid 1.5px;
+    border-radius: 20px;
+  }
+
+  .chatBox {
+    width: 100%;
+    padding: 10px;
+    height: 70%;
+    margin: auto;
+  }
+
+  .chatBoxTitle {
+    font-size: 1.1em;
+    padding: 5px 10px 10px 10px;
+    border-bottom: 2px solid #ffffff;
+  }
+
+  .chatBoxMessage {
+    padding-bottom: 10px;
+  }
+
+  .chatBoxSending {
+    padding: 10px;
+    justify-content: space-around;
+  }
+
+  .messageInfos {
+    gap: 10px;
+  }
+
+  .messageContent {
+    max-width: 70%;
+    font-size: 0.8em;
+    line-height: 1em;
+  }
+
+  .writeMessage {
+    height: 80px;
+  }
+
+  .sendMessage {
+    width: 40px;
+    height: 40px;
+  }
+
+  .send-icon {
+    height: 20px;
+    width: 20px;
+  }
+
+  .errorMessage {
+    margin-top: 10px;
+    border: 1px solid #962323;
+    font-size: 0.8em;
+    max-width: 70%;
+  }
+}
+
+/*
+// Responsive width < 550px
 // ---------------------------------------------------------------------------- */
+
+@media (max-width: 550px) {
+  .sideBar {
+    flex-direction: column;
+    width: 90%;
+  }
+  .title {
+    margin: auto;
+    border-bottom: 2px solid #ffffff;
+  }
+
+  .instructions {
+    display: none;
+  }
+
+  .parameters {
+    margin: auto;
+  }
+
+  .chatBox {
+    width: 90%;
+    padding: 10px;
+    height: 70%;
+    margin: auto;
+  }
+
+  .chatBoxTitle {
+    font-size: 1.1em;
+    padding: 5px 10px 10px 10px;
+    border-bottom: 2px solid #ffffff;
+    height: 40px;
+    margin: 0 auto;
+  }
+}

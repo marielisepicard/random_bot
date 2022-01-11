@@ -3,6 +3,7 @@ import "../style.css";
 import { convertTimestamp } from "../utils/utils";
 
 const ManageLineBreak = ({ message }) => {
+  // fixer cette fonction
   const arr = message.split("\n");
   return (
     <div>
@@ -32,7 +33,7 @@ const Message = ({ message, own }) => (
       )}
     </div>
     <div className={own ? "messageContent own" : "messageContent"}>
-      <ManageLineBreak message={message.message} />
+      {message.message}
     </div>
   </>
 );

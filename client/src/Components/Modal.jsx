@@ -4,13 +4,11 @@ import { useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 
+import { errorMessage } from "../utils/utils";
+
 const Modal = ({ setModal, setUser, setSocket }) => {
   const [pseudo, setPseudo] = useState("");
   const [error, setError] = useState(false);
-  const updatePseudo = (e) => {
-    console.log("updatePseudo");
-    setPseudo(e.target.value);
-  };
 
   const onKeyDown = (e) => {
     if (e.keyCode === 13 && !e.shiftKey) {
@@ -45,13 +43,10 @@ const Modal = ({ setModal, setUser, setSocket }) => {
         <input
           placeholder="pseudo"
           onKeyDown={onKeyDown}
-          onChange={updatePseudo}
+          onChange={(e) => setPseudo(e.target.value)}
         ></input>
-        {error && (
-          <p className="modalError">
-            Oops. Something weng wrong... You should come back later.
-          </p>
-        )}
+        {error && <p className="modalError">{errorMessage()}</p>}
+        {/* tester */}
         <button className="modalBtn" onClick={createUser}>
           Go
         </button>

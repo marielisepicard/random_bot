@@ -17,13 +17,6 @@ function App() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (error) {
-      console.log("ily a une erreur :-(");
-    }
-  }, [error]);
-
-  useEffect(() => {
-    // localStorage.removeItem("id");
     const id = localStorage.getItem("id");
     if (id) {
       setSocket(io("ws://localhost:3001"));
@@ -38,8 +31,6 @@ function App() {
       ),
     [socket]
   );
-
-  const refreshUser = async () => getUser(user.id, setUser, setError);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -65,13 +56,7 @@ function App() {
         </div>
       )}
       {modal && (
-        <Modal
-          setModal={setModal}
-          setUser={setUser}
-          refreshUser={refreshUser}
-          setSocket={setSocket}
-          error={error}
-        />
+        <Modal setModal={setModal} setUser={setUser} setSocket={setSocket} />
       )}
     </>
   );
