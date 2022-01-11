@@ -2,7 +2,7 @@ import "../style.css";
 import Message from "./Message";
 import { useRef, useEffect } from "react";
 
-import Send from "../assets/send3.png";
+import Send from "../assets/sendIcon.png";
 
 const Chatbox = ({
   user,
@@ -12,10 +12,6 @@ const Chatbox = ({
   error,
 }) => {
   const scrollRef = useRef();
-
-  // useEffect(() => {
-  //   console.log(user.conversation);
-  // }, [user]);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -74,5 +70,12 @@ const Chatbox = ({
     </div>
   );
 };
+
+// Chatbox.propTypes = {
+//   user: PropTypes.string,
+//   updateNewMessage: PropTypes.string.isRequired,
+//   newMessage: PropTypes.string
+//   error:
+// }
 
 export default Chatbox;
