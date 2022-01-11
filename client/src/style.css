@@ -68,12 +68,13 @@
 
 .parameters {
   height: 44%;
+  text-align: center;
 }
 
-.sidebarBtn {
+.sidebarBtn,
+.sidebarDiv {
   background: none;
   outline: none;
-  border: none;
   color: white;
   padding: 10px;
   font-style: normal;
@@ -81,8 +82,20 @@
   font-size: 20px;
   line-height: 24px;
   letter-spacing: 0.03em;
-  cursor: pointer;
   margin: 10px 0;
+}
+
+.sidebarBtn {
+  margin-top: 20px;
+  cursor: pointer;
+  border: white solid 1.5px;
+  border-radius: 20px;
+}
+
+.sidebarBtn:hover {
+  background-color: rgba(255, 255, 255, 0.418);
+  border: rgba(255, 255, 255, 0.418) solid 1.5px;
+  transition: 600ms;
 }
 
 /* 
@@ -101,6 +114,16 @@
   margin-bottom: 10px;
   padding: 10px 20px 20px 20px;
   border-bottom: 5px solid #ffffff;
+}
+
+.errorMessage {
+  color: #962323;
+  font-weight: 800;
+  border: 2px solid #962323;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  margin: auto;
 }
 
 /* 
@@ -190,7 +213,8 @@
   padding: 3px;
 }
 
-.sendMessage:active {
+.sendMessage:active,
+.sidebarBtn:active {
   background-color: white;
   transform: scale(1.25);
   transition: 1000ms;
@@ -273,6 +297,12 @@ input:focus {
 .modalBtn:active {
   transform: scale(1.35);
   transition: 1000ms;
+}
+
+.modalError {
+  color: #962323;
+  font-weight: 400;
+  font-size: 12px;
 }
 
 /* 

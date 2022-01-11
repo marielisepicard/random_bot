@@ -2,6 +2,20 @@ import "../style.css";
 
 import { convertTimestamp } from "../utils/utils";
 
+const ManageLineBreak = ({ message }) => {
+  const arr = message.split("\n");
+  return (
+    <div>
+      {arr.map((str) => (
+        <div key={str}>
+          {str}
+          <br />
+        </div>
+      ))}
+    </div>
+  );
+};
+
 const Message = ({ message, own }) => (
   <>
     <div className="messageInfos">
@@ -18,7 +32,7 @@ const Message = ({ message, own }) => (
       )}
     </div>
     <div className={own ? "messageContent own" : "messageContent"}>
-      {message.message}
+      <ManageLineBreak message={message.message} />
     </div>
   </>
 );

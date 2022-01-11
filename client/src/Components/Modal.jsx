@@ -6,6 +6,7 @@ import { io } from "socket.io-client";
 
 const Modal = ({ setModal, setUser, setSocket }) => {
   const [pseudo, setPseudo] = useState("");
+  const [error, setError] = useState(false);
   const updatePseudo = (e) => {
     console.log("updatePseudo");
     setPseudo(e.target.value);
@@ -34,7 +35,7 @@ const Modal = ({ setModal, setUser, setSocket }) => {
         setSocket(io("ws://localhost:3001"));
         setModal(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setError(true));
   };
 
   return (
@@ -46,6 +47,11 @@ const Modal = ({ setModal, setUser, setSocket }) => {
           onKeyDown={onKeyDown}
           onChange={updatePseudo}
         ></input>
+        {error && (
+          <p className="modalError">
+            Oops. Something weng wrong... You should come back later.
+          </p>
+        )}
         <button className="modalBtn" onClick={createUser}>
           Go
         </button>

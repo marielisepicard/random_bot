@@ -17,7 +17,13 @@ function App() {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    //  localStorage.removeItem("id");
+    if (error) {
+      console.log("ily a une erreur :-(");
+    }
+  }, [error]);
+
+  useEffect(() => {
+    // localStorage.removeItem("id");
     const id = localStorage.getItem("id");
     if (id) {
       setSocket(io("ws://localhost:3001"));
@@ -39,8 +45,8 @@ function App() {
     e.preventDefault();
     if (newMessage.length > 0) {
       postMessage(newMessage, user.pseudo, user, setUser, setError);
-      socket.emit("Message", newMessage);
       setNewMessage("");
+      socket.emit("Message", newMessage);
     }
   };
 
@@ -54,6 +60,7 @@ function App() {
             sendMessage={sendMessage}
             updateNewMessage={(e) => setNewMessage(e.target.value)}
             newMessage={newMessage}
+            error={error}
           />
         </div>
       )}
@@ -63,6 +70,7 @@ function App() {
           setUser={setUser}
           refreshUser={refreshUser}
           setSocket={setSocket}
+          error={error}
         />
       )}
     </>

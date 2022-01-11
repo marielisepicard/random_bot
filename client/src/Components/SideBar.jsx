@@ -2,6 +2,16 @@ import "../style.css";
 
 import axios from "axios";
 
+import styled from "styled-components";
+
+const Sidebar = styled.div`
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+`;
+
 const Presentation = ({ user, setUser, setError }) => {
   const deleteConversation = () =>
     axios({
@@ -12,7 +22,8 @@ const Presentation = ({ user, setUser, setError }) => {
       .catch((err) => setError(true));
 
   return (
-    <div className="sideBar">
+    // <div className="sideBar">
+    <Sidebar>
       <div className="title">Random Chatbot.</div>
       <div className="instructions">
         Welcome onboard 👋🏻 Send a message to Bot and you’ll get a fast answer.
@@ -23,11 +34,12 @@ const Presentation = ({ user, setUser, setError }) => {
         <button className="sidebarBtn" onClick={deleteConversation}>
           Delete conversation historic
         </button>
-        <button className="sidebarBtn">
+        <div className="sidebarDiv">
           Conversation length: {user.conversation.length}
-        </button>
+        </div>
       </div>
-    </div>
+      {/* </div> */}
+    </Sidebar>
   );
 };
 
