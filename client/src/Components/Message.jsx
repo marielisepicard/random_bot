@@ -1,25 +1,31 @@
-import "../style.css";
-
 import { convertTimestamp } from "../utils/utils";
+
+import {
+  MessageData,
+  Data,
+  Content,
+  UserContent,
+} from "./Styles/Message.styled";
 
 const Message = ({ message, own }) => (
   <>
-    <div className="messageInfos">
-      {own ? (
-        <>
-          <p className="messageSend">{convertTimestamp(message.timestamp)}</p>
-          <p className="messageAuthor ">You</p>
-        </>
-      ) : (
-        <>
-          <p className="messageAuthor ">Bot</p>{" "}
-          <p className="messageSend">{convertTimestamp(message.timestamp)}</p>
-        </>
-      )}
-    </div>
-    <div className={own ? "messageContent own" : "messageContent"}>
-      {message.message}
-    </div>
+    {own ? (
+      <>
+        <MessageData>
+          <Data>{convertTimestamp(message.timestamp)}</Data>
+          <Data>You</Data>
+        </MessageData>
+        <UserContent>{message.message}</UserContent>
+      </>
+    ) : (
+      <>
+        <MessageData>
+          <Data>Bot</Data>
+          <Data>{convertTimestamp(message.timestamp)}</Data>
+        </MessageData>
+        <Content>{message.message}</Content>
+      </>
+    )}
   </>
 );
 

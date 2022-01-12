@@ -1,8 +1,21 @@
-import "../style.css";
 import Message from "./Message";
 import { useRef, useEffect } from "react";
 
 import Send from "../assets/sendIcon.png";
+
+import {
+  ChatBoxWrapper,
+  Title,
+  Error,
+  MessageWrapper,
+  WritingMessageWrapper,
+  StyledTextarea,
+  SendMessage,
+  Icon,
+  Content,
+  UserContent,
+  ScrollRef,
+} from "./Styles/Chatbox.styled";
 
 const Chatbox = ({
   user,
@@ -25,49 +38,42 @@ const Chatbox = ({
   };
 
   return (
-    <div className="chatBox">
-      <div className="chatBoxTitle">
-        Hello {user.pseudo}, I’m Bot. Let’s have a talk...!
-      </div>
+    <ChatBoxWrapper>
+      <Title>Hello {user.pseudo}, I’m Bot. Let’s have a talk...!</Title>
       {error && (
-        <p className="errorMessage">
+        <Error>
           Oops. Something weng wrong... Bot is really sorry about it.
           <br />
           You should come back later.
-        </p>
+        </Error>
       )}
-      <div className="chatBoxMessage">
+      <MessageWrapper>
         {conversation.map((message) => (
-          <div
+          <ScrollRef
             ref={scrollRef}
             key={message.timestamp}
-            className={
-              message.author === user.pseudo
-                ? "messageWrapper own"
-                : "messageWrapper"
-            }
+            own={message.author === user.pseudo ? true : false}
           >
             <Message
               message={message}
               own={message.author === user.pseudo ? true : false}
               key={message.timestamp}
             />
-          </div>
+          </ScrollRef>
         ))}
-      </div>
-      <form className="chatBoxSending" onSubmit={sendMessage}>
-        <textarea
-          className="writeMessage"
+      </MessageWrapper>
+      <WritingMessageWrapper onSubmit={sendMessage}>
+        <StyledTextarea
           placeholder="Write something..."
           value={newMessage}
           onChange={updateNewMessage}
           onKeyDown={onKeyDown}
         />
-        <button className="sendMessage">
-          <img className="send-icon" src={Send} alt="icon" />
-        </button>
-      </form>
-    </div>
+        <SendMessage>
+          <Icon src={Send} alt="icon" />
+        </SendMessage>
+      </WritingMessageWrapper>
+    </ChatBoxWrapper>
   );
 };
 

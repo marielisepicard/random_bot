@@ -6,8 +6,9 @@ import Chatbox from "./Components/Chatbox";
 import Modal from "./Components/Modal";
 
 import { getUser, postMessage } from "./utils/api";
-
-import "./style.css";
+import { ThemeProvider } from "styled-components";
+import { AppWrapper } from "./App.styled";
+import { blueTheme, darkTheme } from "./Components/Styles/Themes.styled";
 
 function App() {
   const [user, setUser] = useState({});
@@ -16,8 +17,10 @@ function App() {
   const [newMessage, setNewMessage] = useState("");
   const [error, setError] = useState(false);
   const [conversation, setConversation] = useState([]);
+  const [theme, setTheme] = useState(blueTheme);
 
   useEffect(() => {
+    // localStorage.removeItem("id");
     const id = localStorage.getItem("id");
     if (id) {
       setSocket(io("ws://localhost:3001"));
@@ -41,30 +44,35 @@ function App() {
       socket.emit("Message", newMessage);
     }
   };
+  const handleTheme = () =>
+    setTheme(theme === blueTheme ? darkTheme : blueTheme);
 
   return (
     <>
-      {user && user.conversation && (
-        <div className="app">
-          <SideBar
-            user={user}
-            setConversation={setConversation}
-            length={conversation.length}
-            setError={setError}
-          />
-          <Chatbox
-            user={user}
-            sendMessage={sendMessage}
-            updateNewMessage={(e) => setNewMessage(e.target.value)}
-            newMessage={newMessage}
-            error={error}
-            conversation={conversation}
-          />
-        </div>
-      )}
-      {modal && (
-        <Modal setModal={setModal} setUser={setUser} setSocket={setSocket} />
-      )}
+      <ThemeProvider theme={theme}>
+        {user && user.conversation && (
+          <AppWrapper>
+            <SideBar
+              user={user}
+              setConversation={setConversation}
+              length={conversation.length}
+              setError={setError}
+              handleTheme={handleTheme}
+            />
+            <Chatbox
+              user={user}
+              sendMessage={sendMessage}
+              updateNewMessage={(e) => setNewMessage(e.target.value)}
+              newMessage={newMessage}
+              error={error}
+              conversation={conversation}
+            />
+          </AppWrapper>
+        )}
+        {modal && (
+          <Modal setModal={setModal} setUser={setUser} setSocket={setSocket} />
+        )}
+      </ThemeProvider>
     </>
   );
 }

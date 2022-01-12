@@ -1,8 +1,21 @@
-import "../style.css";
-
 import axios from "axios";
 
-const Presentation = ({ user, setError, setConversation, length }) => {
+import {
+  SideBarStyle,
+  Title,
+  Instructions,
+  Parameters,
+  Button,
+  LengthInfo,
+} from "./Styles/SideBar.styled";
+
+const Presentation = ({
+  user,
+  setError,
+  setConversation,
+  length,
+  handleTheme,
+}) => {
   const deleteConversation = () =>
     axios({
       method: "delete",
@@ -12,20 +25,21 @@ const Presentation = ({ user, setError, setConversation, length }) => {
       .catch((err) => setError(true));
 
   return (
-    <div className="sideBar">
-      <div className="title">Random Chatbot.</div>
-      <div className="instructions">
+    <SideBarStyle>
+      <Title>Random Chatbot.</Title>
+      <Instructions>
         Welcome onboard 👋🏻 Send a message to Bot and you’ll get a fast answer.
         Bot is configured to respond in less than two seconds by sending back
         the same message but with a random shuffle of your words.
-      </div>
-      <div className="parameters">
-        <button className="sidebarBtn" onClick={deleteConversation}>
+      </Instructions>
+      <Parameters>
+        <Button onClick={deleteConversation}>
           Delete conversation historic
-        </button>
-        <div className="sidebarDiv">Conversation length: {length}</div>
-      </div>
-    </div>
+        </Button>
+        <Button onClick={handleTheme}>Switch Theme</Button>
+        <LengthInfo>Conversation length: {length}</LengthInfo>
+      </Parameters>
+    </SideBarStyle>
   );
 };
 

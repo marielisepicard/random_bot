@@ -1,10 +1,16 @@
-import "../style.css";
-
 import { useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
 
 import { errorMessage } from "../utils/utils";
+
+import {
+  ModalWrapper,
+  ModalBox,
+  Instructions,
+  Error,
+  ModalButton,
+} from "./Styles/Modal.styled";
 
 const Modal = ({ setModal, setUser, setSocket }) => {
   const [pseudo, setPseudo] = useState("");
@@ -37,21 +43,18 @@ const Modal = ({ setModal, setUser, setSocket }) => {
   };
 
   return (
-    <div className="modal">
-      <div className="modalWrapper">
-        <div className="modalInstruction">Choose a pseudo:</div>
+    <ModalWrapper>
+      <ModalBox>
+        <Instructions>Choose a pseudo:</Instructions>
         <input
           placeholder="pseudo"
           onKeyDown={onKeyDown}
           onChange={(e) => setPseudo(e.target.value)}
         ></input>
-        {error && <p className="modalError">{errorMessage()}</p>}
-        {/* tester */}
-        <button className="modalBtn" onClick={createUser}>
-          Go
-        </button>
-      </div>
-    </div>
+        {error && <Error>{errorMessage()}</Error>}
+        <ModalButton onClick={createUser}>Go</ModalButton>
+      </ModalBox>
+    </ModalWrapper>
   );
 };
 
