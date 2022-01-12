@@ -157,18 +157,6 @@ export const Icon = styled.img`
   }
 `;
 
-export const Content = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-export const UserContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
 export const ScrollRef = styled.div`
   display: flex;
   flex-direction: column;

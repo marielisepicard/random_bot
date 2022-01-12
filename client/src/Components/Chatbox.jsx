@@ -12,8 +12,6 @@ import {
   StyledTextarea,
   SendMessage,
   Icon,
-  Content,
-  UserContent,
   ScrollRef,
 } from "./Styles/Chatbox.styled";
 

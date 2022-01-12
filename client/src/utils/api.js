@@ -12,8 +12,10 @@ export function getUser(id, setUser, setError, setConversation) {
     .catch((err) => setError(true));
 }
 
-export function postMessage(message, author, user, setError, setConversation) {
-  const id = user && user.id ? user.id : localStorage.getItem("id");
+export function postMessage(message, author, setError, setConversation) {
+  const id = localStorage.getItem("id")
+    ? localStorage.getItem("id")
+    : undefined;
   axios({
     method: "post",
     url: `http://localhost:3001/messages/`,

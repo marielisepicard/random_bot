@@ -36,7 +36,7 @@ function App() {
   useEffect(
     () =>
       socket?.on("Bot", (message) =>
-        postMessage(message, "Bot", user, setError, setConversation)
+        postMessage(message, "Bot", setError, setConversation)
       ),
     [socket]
   );
@@ -44,7 +44,7 @@ function App() {
   const sendMessage = async (e) => {
     e.preventDefault();
     if (newMessage.length > 0) {
-      postMessage(newMessage, user.pseudo, user, setError, setConversation);
+      postMessage(newMessage, user.pseudo, setError, setConversation);
       setNewMessage("");
       socket.emit("Message", newMessage);
     }
