@@ -62,7 +62,7 @@ function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {user && user.conversation && (
+        {user && user.conversation ? (
           <AppWrapper>
             <SideBar
               user={user}
@@ -80,6 +80,15 @@ function App() {
               conversation={conversation}
             />
           </AppWrapper>
+        ) : (
+          !modal && (
+            <AppWrapper>
+              <div>
+                <h1>Loading...</h1>
+                <div>A problem may have occured... Come back later</div>
+              </div>
+            </AppWrapper>
+          )
         )}
         {modal && (
           <Modal setModal={setModal} setUser={setUser} setSocket={setSocket} />
