@@ -16,7 +16,6 @@ describe("Message", () => {
       .post("/messages")
       .send({ author: "Pseudo", message: "Message", id: id });
     expect(res.statusCode).toBe(201);
-    expect(res.body.author).toEqual("Pseudo");
   });
 
   it("Post a message (missing author)", async () => {
