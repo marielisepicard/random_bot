@@ -2,21 +2,6 @@ import "../style.css";
 
 import { convertTimestamp } from "../utils/utils";
 
-const ManageLineBreak = ({ message }) => {
-  // fixer cette fonction
-  const arr = message.split("\n");
-  return (
-    <div>
-      {arr.map((str) => (
-        <div key={str}>
-          {str}
-          <br />
-        </div>
-      ))}
-    </div>
-  );
-};
-
 const Message = ({ message, own }) => (
   <>
     <div className="messageInfos">

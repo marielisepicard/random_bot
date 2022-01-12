@@ -64,7 +64,7 @@ const Chatbox = ({
           onKeyDown={onKeyDown}
         />
         <button className="sendMessage">
-          <img className="send-icon" src={Send} />
+          <img className="send-icon" src={Send} alt="icon" />
         </button>
       </form>
     </div>
