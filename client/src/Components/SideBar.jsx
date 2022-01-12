@@ -2,13 +2,13 @@ import "../style.css";
 
 import axios from "axios";
 
-const Presentation = ({ user, setUser, setError }) => {
+const Presentation = ({ user, setError, setConversation, length }) => {
   const deleteConversation = () =>
     axios({
       method: "delete",
       url: `http://localhost:3001/messages/${user.id}`,
     })
-      .then(() => setUser({ ...user, conversation: [] }))
+      .then(() => setConversation([]))
       .catch((err) => setError(true));
 
   return (
@@ -23,9 +23,7 @@ const Presentation = ({ user, setUser, setError }) => {
         <button className="sidebarBtn" onClick={deleteConversation}>
           Delete conversation historic
         </button>
-        <div className="sidebarDiv">
-          Conversation length: {user.conversation.length}
-        </div>
+        <div className="sidebarDiv">Conversation length: {length}</div>
       </div>
     </div>
   );

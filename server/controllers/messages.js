@@ -49,12 +49,9 @@ exports.postMessage = async (req, res) => {
     }
 
     User.updateOne({ id: id }, { $push: { conversation: newMessage } })
-      .then(() => {
-        res.status(201).json(newMessage);
-      })
-      .catch((error) => {
-        res.status(500).json("internal error");
-      });
+      .then(() => User.findOne({ id: id }))
+      .then((newUser) => res.status(201).json(newUser.conversation))
+      .catch((error) => res.status(500).json("internal error"));
   } else {
     res.status(500).json({ Error: "Internal error" });
   }

@@ -10,12 +10,13 @@ const Chatbox = ({
   updateNewMessage,
   newMessage,
   error,
+  conversation,
 }) => {
   const scrollRef = useRef();
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [user]);
+  }, [conversation]);
 
   const onKeyDown = (e) => {
     if (e.keyCode === 13 && !e.shiftKey) {
@@ -36,7 +37,7 @@ const Chatbox = ({
         </p>
       )}
       <div className="chatBoxMessage">
-        {user.conversation.map((message) => (
+        {conversation.map((message) => (
           <div
             ref={scrollRef}
             key={message.timestamp}
