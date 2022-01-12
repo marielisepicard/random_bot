@@ -18,6 +18,19 @@ export const ModalBox = styled.div`
   width: 300px;
   background-color: rgba(255, 255, 255, 0.432);
   padding: 15px;
+
+  input {
+    border: none;
+    padding-left: 10px;
+    height: 20px;
+    border-radius: 5px;
+    color: #234d96;
+    font-weight: 600;
+  }
+
+  input:focus {
+    outline: none;
+  }
 `;
 
 export const Instructions = styled.div`

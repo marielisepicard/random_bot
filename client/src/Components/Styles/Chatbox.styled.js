@@ -99,7 +99,7 @@ export const StyledTextarea = styled.textarea`
   resize: none;
   border: none;
   border-radius: 10px;
-  color: #234d96;
+  color: ${({ theme }) => theme.textareaFont};
   font-family: "Inter", sans-serif;
   font-weight: 600;
   &::placeholder {
