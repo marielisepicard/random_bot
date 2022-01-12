@@ -67,6 +67,12 @@ exports.deleteConversation = async (req, res) => {
     return res.status(400).json({ Error: "Parameter id is missing" });
   }
 
+  const user = await User.findOne({ id: id });
+
+  if (!user) {
+    return res.status(404).json({ Error: "User with this id doesn't exist" });
+  }
+
   User.updateOne({ id: id }, { conversation: [] })
     .then(() => {
       res

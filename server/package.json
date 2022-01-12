@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "Marie-Lise Picard",
   "license": "ISC",
@@ -13,6 +13,12 @@
     "express": "^4.17.2",
     "md5": "^2.3.0",
     "mongoose": "^6.1.5",
-    "socket.io": "^4.4.1"
+    "node-mocks-http": "^1.11.0",
+    "socket.io": "^4.4.1",
+    "supertest": "^6.2.1"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "mockingoose": "^2.15.2"
   }
 }

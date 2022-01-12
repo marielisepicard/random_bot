@@ -48,3 +48,16 @@ exports.wrongParameters = async (req, res) => {
 exports.wrongRequest = (req, res) => {
   return res.status(400).json({ Error: "Wrong request" });
 };
+
+/* for test purpose */
+exports.deleteUser = async (req, res) => {
+  const { id } = req.params;
+
+  const user = await User.findOne({ id: id });
+  if (!user) {
+    return res.status(404).json({ Error: "User with this id doesn't exist" });
+  }
+  User.deleteOne({ id: id })
+    .then(() => res.status(204).json("user successfully deleted"))
+    .catch((error) => res.status(500).json("internal error"));
+};
