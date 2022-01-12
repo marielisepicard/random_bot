@@ -10,7 +10,7 @@ export const SideBarStyle = styled.div`
   padding: 20px;
 
   @media (max-width: 1050px) {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     flex-direction: row;
     justify-content: space-evenly;
@@ -19,6 +19,8 @@ export const SideBarStyle = styled.div`
   @media (max-width: 550px) {
     flex-direction: column;
     width: 90%;
+    height: 25%;
+    margin: auto;
   }
 `;
 
@@ -43,6 +45,7 @@ export const Title = styled.div`
   @media (max-width: 550px) {
     margin: auto auto 10px auto;
     border-bottom: 2px solid #ffffff;r
+    max-width: 80%
   }
 `;
 
@@ -78,6 +81,7 @@ export const Parameters = styled.div`
 
   @media (max-width: 550px) {
     margin: auto;
+    max-width: 80%;
   }
 `;
 
@@ -120,7 +124,9 @@ export const Button = styled.button`
   }
 
   @media (max-width: 550px) {
-    margin: auto;
+    margin: 10px auto auto auto;
+    max-width: 80%;
+    font-size: 0.6em;
   }
 `;
 
@@ -138,5 +144,10 @@ export const LengthInfo = styled.div`
     line-height: 1em;
     margin: 10px 0;
     width: 200px;
+  }
+
+  @media (max-width: 550px) {
+    max-width: 80%;
+    font-size: 0.6em;
   }
 `;

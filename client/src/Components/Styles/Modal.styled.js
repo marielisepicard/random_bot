@@ -31,17 +31,29 @@ export const ModalBox = styled.div`
   input:focus {
     outline: none;
   }
+
+  @media (max-width: 550px) {
+    max-width: 90%;
+  }
 `;
 
 export const Instructions = styled.div`
   color: #234d96;
   font-weight: 500;
+
+  @media (max-width: 550px) {
+    max-width: 90%;
+  }
 `;
 
 export const Error = styled.p`
   color: #962323;
   font-weight: 400;
   font-size: 12px;
+
+  @media (max-width: 550px) {
+    max-width: 90%;
+  }
 `;
 
 export const ModalButton = styled.button`
@@ -62,5 +74,9 @@ export const ModalButton = styled.button`
   &:active {
     transform: scale(1.35);
     transition: 1000ms;
+  }
+
+  @media (max-width: 550px) {
+    max-width: 90%;
   }
 `;

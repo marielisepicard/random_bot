@@ -11,6 +11,11 @@ export const MessageData = styled.div`
   @media (max-width: 1050px) {
     gap: 10px;
   }
+
+  @media (max-width: 550px) {
+    justify-content: center;
+    gap: 0px;
+  }
 `;
 
 export const Data = styled.p`

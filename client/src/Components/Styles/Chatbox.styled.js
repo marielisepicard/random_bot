@@ -10,7 +10,7 @@ export const ChatBoxWrapper = styled.div`
   width: 77%;
 
   @media (max-width: 1050px) {
-    width: 100%;
+    width: 90%;
     padding: 5px;
     height: 70%;
     margin: 0 auto auto auto;
@@ -21,8 +21,10 @@ export const ChatBoxWrapper = styled.div`
   @media (max-width: 550px) {
     width: 90%;
     padding: 10px;
-    height: 70%;
+    height: 65%;
     margin: auto;
+    margin-bottom: 5px;
+    border: none;
   }
 `;
 
@@ -90,6 +92,12 @@ export const WritingMessageWrapper = styled.form`
     padding: 10px;
     justify-content: space-around;
   }
+
+  @media (max-width: 550px) {
+    padding-bottom: 10px;
+    justify-content: center;
+    padding: 6px;
+  }
 `;
 
 export const StyledTextarea = styled.textarea`
@@ -116,6 +124,11 @@ export const StyledTextarea = styled.textarea`
   @media (max-width: 1050px) {
     height: 80px;
   }
+
+  @media (max-width: 550px) {
+    height: 40px;
+    width: 40%;
+  }
 `;
 
 export const SendMessage = styled.button`
@@ -141,6 +154,8 @@ export const SendMessage = styled.button`
   @media (max-width: 1050px) {
     width: 40px;
     height: 40px;
+    border-radius: 30%;
+    margin: 5px;
   }
 `;
 
@@ -152,8 +167,9 @@ export const Icon = styled.img`
   left: -2px;
 
   @media (max-width: 1050px) {
-    height: 20px;
-    width: 20px;
+    height: 0px;
+    width: 0px;
+    top: 2px;
   }
 `;
 
@@ -163,4 +179,8 @@ export const ScrollRef = styled.div`
   align-items: flex-start;
   align-items: ${({ own }) => (own ? "flex-end" : "flex-start")};
   padding-right: ${({ own }) => (own ? "13px" : "0")};
+
+  @media (max-width: 1050px) {
+    padding-right: ${({ own }) => (own ? "14px" : "0")};
+  }
 `;
