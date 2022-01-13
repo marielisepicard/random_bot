@@ -10,7 +10,7 @@
 
 ## 👨🏻‍💻 TO TEST
 
-- `npm i` on both `client` and `server` folder.
+- `npm i` on both `client` and `server` folders.
 - Add `.env` file on `server`folder.
 - `npm start` from `client` folder.
 - `npm start` from `server` folder.
