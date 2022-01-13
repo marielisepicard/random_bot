@@ -20,7 +20,7 @@
 
 ## ⚙️ BACKEND
 
-I mane only **one model called "User"**. It is made of:
+I only made **one model called "User"**. It is made of:
 
 
 <p align="center">
