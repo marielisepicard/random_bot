@@ -32,7 +32,20 @@ I only made **one model called "User"**. It is made of:
 
 — 💬  a `pseudo`
 
-— 🗣 a `conversation` array, it's a list of message. A message object is composed of the `author` of the message (user pseudo or “Bot”), a `timestamp` (when the message is sent to the database) and the content of the `message`).
+— 🗣 a `conversation` array which is a list of message. A message data is composed of 
+
+> the **author** of the message (user pseudo or “Bot”)
+
+> a **timestamp** (when the message is sent to the database) 
+
+> the **content** of the message).
+
+
+
+
+
+
+
 
 I used **MongoDB** to store data.
 
