@@ -20,7 +20,7 @@
 
 ## ⚙️ BACKEND
 
-I decided to make only **one User model**. It is made of:
+I mane only **one model called "User"**. It is made of:
 
 
 <p align="center">
@@ -32,9 +32,9 @@ I decided to make only **one User model**. It is made of:
 
 — 💬  a `pseudo`
 
-— 🗣 a `conversation` array (made of all `messages` sent to the Bot or received from the Bot). A conversation is an array of messages. A message object is made of the `author` of the message (user pseudo or “Bot”), a `timestamp` (when the message is sent to the database) and the content of the `message`).
+— 🗣 a `conversation` array, it's a list of message. A message object is composed of the `author` of the message (user pseudo or “Bot”), a `timestamp` (when the message is sent to the database) and the content of the `message`).
 
-I used **MongoDB**.
+I used **MongoDB** to store data.
 
 
 
@@ -42,9 +42,9 @@ I used **MongoDB**.
 
 — **Create a user** :  to create a user, the controller only needs a pseudo. Since there is no communication between users, we can have the same pseudos for multiple users. What differentiates them is their id. 
 
-— **Get a user** : with the ID of a user, we can retrieve all its informations. Its pseudo and its conversations with the Bot (including Bot messages).
+— **Get a user** : with the id of a user, we can retrieve all its data. 
 
-— **Post a message** : we need the message content, the ID of the user (even if it’s a Bot message) and the author (to differentiate the user and the Bot). 
+— **Post a message** : we need the message content, the id of the user (even if it’s a Bot message) and the author (to differentiate the user and the Bot). 
 
 — **Get conversation** : to retrieve all messages between the Bot and a user. 
 
@@ -78,7 +78,7 @@ To randomly shuffle words, I implemented the **Fisher–Yates shuffle algorithm.
 
 ### 🚵 **Tests** 
 
-I made unit tests with **Jest** to test my shuffle algorithm
+I made unit tests with **Jest** to test my shuffle algorithm.
 
 I made integration tests with **SuperTest** to test the api calls. 
 
@@ -101,22 +101,22 @@ I made integration tests with **SuperTest** to test the api calls.
 
 **2. ↖️ SideBar**
 
-To display the name of the Bot, some instructions, one CTA to delete the conversation and the lenth of the conversation (a conversation cannot have more than 50 messages)
+To display the name of the Bot, some instructions, CTAs to delete the conversation and switch color theme. I also add the lenth of the conversation (so that we can check that a conversation never exceed 50 messages)
 
 
 **3. 💬 The Chatbox**
 
-The Chatbox displays the pseudo of the user. It also display the whole conversation. The user can also write a new message on  a textarea. 
+The Chatbox displays the pseudo of the user. It also display the whole conversation. The user can write new messages on a textarea. He can click on the "Send" button or just press "Enter".  
 
 
 **4. ⌨ A Message component**
 
-The Message component displays multiple data: the content of the message, the author and the date where it has been created on the backend to be store on the database.
+The Message component displays multiple data: the content of the message, the author and the date where its object has been created on the backend to be stored on the database. 
 
 
 **5. 🙋🏽‍♂️ A modal**
 
-The modal is visible at the first visit of a potential user. When a user creates its pseudo, it stores in localstorage its ID so that the next time he comes, the data will be loaded.
+The modal is visible at the first visit of a potential user. When a user creates its pseudo, it stores its id in the local storage of the browser.
 
 
 
@@ -124,14 +124,14 @@ The modal is visible at the first visit of a potential user. When a user creates
 
 I used [Figma](https://www.figma.com/file/5HVx3zStjVf8Hyh4BDgL9R/Random-chatbot?node-id=0%3A1) to imagine and create the design of the app.
 
-I started with a design that was reproducing **the shape of an iPhone** but I was not satisfy with the final render. 
+I started with a design that imitated **the shape of an iPhone** but I was not satisfied with the final render. 
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/marielisepicard/random_bot/main/client/src/assets/firstThemeIdea.png" width=50% height=50%>
 </p>
 
 
-So I totally **switch of component arrangements** and I was finally happy with this.
+So I totally **switch the component arrangement** and I was finally happy with this:
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/marielisepicard/random_bot/main/client/src/assets/FinalIdea.png" width=50% height=50%>
@@ -147,6 +147,7 @@ I also imagine **more themes** to add a toggle CTA
     <img src="https://raw.githubusercontent.com/marielisepicard/random_bot/main/client/src/assets/DarkTheme.png" width=50% height=50%>
 </p>
 
+To create more themes, I discovered `styled-components` library. 
 
 
 
@@ -154,15 +155,15 @@ I also imagine **more themes** to add a toggle CTA
 
 — 👱🏻‍♂️ A potential user can define **its pseudo** and start to use the app
 
-— 🎤 A user can post messages on a chat
+— 🎤 A user can **post** messages on a chat
 
-— 💬 A user can retrieve its whole conversation (50 messages maximum)
+— 💬 A user can **retrieve** its whole **conversation** (50 messages maximum)
 
-— ✨ A user can retrieve its data if he come back during another session
+— ✨ A user can retrieve its data if he come back **during** **another** **session**
 
-—  🤖 The Bot respond in less than 2 seconds the same message but with a random shuffle of the words of the user message 
+—  🤖 The Bot respond in **less than 2 seconds** the same message but with a random shuffle of the words of the user message 
 
-— 👀 Bot pseudo is displayed on the Chat 
+— 👀 Bot **pseudo** is displayed on the Chat 
 
-— 😇 The application is basic.
+— 😇 The application is **basic**.
 
